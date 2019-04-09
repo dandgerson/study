@@ -1,0 +1,26 @@
+{
+  "name": "study",
+  "version": "1.0.0",
+  "description": "- [Panos Louridas Real-World Algorithms. A Beginner's Guide](./panos-louridas-real-world-algorithms/readme.md);",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dandgerson/study.git"
+  },
+  "author": "Dmitry G. Anderson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dandgerson/study/issues"
+  },
+  "homepage": "https://github.com/dandgerson/study#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.16.0",
+    "mocha": "^6.1.2",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0"
+  }
+}
