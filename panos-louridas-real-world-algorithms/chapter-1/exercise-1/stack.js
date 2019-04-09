@@ -21,15 +21,15 @@ class Stack {
     return this.data[0];
   }
 
-  size() {
+  getSize() {
     return this.data.filter(i => i !== undefined).length;
   }
 
   isEmpty() {
-    return this.size() === 0;
+    return this.getSize() === 0;
   }
 
-  maxSize() {
+  getMaxSize() {
     if (this.maxSize) return this.maxSize;
     throw new Error('The Stack is dynamic.');
   }
