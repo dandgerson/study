@@ -1,14 +1,13 @@
 class Stack {
-  constructor(size) {
-    if (size) {
-      this.size = size;
-      this.data = new Array(size);
-    }
-    this.data = [];
+  constructor(maxSize) {
+    if (maxSize) {
+      this.maxSize = maxSize;
+      this.data = new Array(maxSize);
+    } else this.data = [];
   }
 
   push(i) {
-    if (this.size && this.size < this.data.length + 1) throw new Error('The Stack is full.');
+    if (this.maxSize && this.maxSize < this.data.length + 1) throw new Error('The Stack is full.');
     this.data.unshift(i);
   }
 
@@ -22,12 +21,16 @@ class Stack {
     return this.data[0];
   }
 
+  size() {
+    return this.data.filter(i => i !== undefined).length;
+  }
+
   isEmpty() {
-    return this.data.length === 0;
+    return this.size() === 0;
   }
 
   maxSize() {
-    if (this.size) return this.size;
+    if (this.maxSize) return this.maxSize;
     throw new Error('The Stack is dynamic.');
   }
 }

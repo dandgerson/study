@@ -20,14 +20,13 @@ describe('Stack', () => {
       done();
     });
 
-    it('should take optional size parameter and save it as a property', (done) => {
+    it('should take optional maxSize parameter and save it as a property', (done) => {
       stack = new Stack(100);
-      assert.exists(stack.size);
+      assert.exists(stack.maxSize);
       done();
     });
-    it('shouldn\'t have size parameter, when is not passed optional size parameter', (done) => {
-      stack = new Stack();
-      assert.notExists(stack.size);
+    it('shouldn\'t have maxSize parameter, when is not passed optional maxSize parameter', (done) => {
+      assert.notExists(stack.maxSize);
       done();
     });
   });
@@ -37,9 +36,17 @@ describe('Stack', () => {
       assert.exists(stack.push);
       assert.exists(stack.pop);
       assert.exists(stack.isEmpty);
+      assert.exists(stack.size);
       assert.exists(stack.top);
       assert.exists(stack.maxSize);
       done();
+    });
+    describe('push', () => {
+      it('should add new element on the top of the stack', (done) => {
+        stack.push(0);
+        assert.equal(stack.data[0], 0);
+        done();
+      });
     });
   });
 });
