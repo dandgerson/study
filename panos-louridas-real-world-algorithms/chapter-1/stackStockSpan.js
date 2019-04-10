@@ -8,7 +8,8 @@ const stackStockSpan = (quotes) => {
   stack.push(0);
 
   for (let i = 1; i < quotes.length; i += 1) {
-    while (!stack.isEmpty() && quotes[stack.top()] <= quotes[i]) stack.pop();
+    while (!stack.isEmpty()
+      && quotes[stack.top()] <= quotes[i]) stack.pop();
     if (stack.isEmpty()) spans[i] = i + 1;
     else spans[i] = i - stack.top();
     stack.push(i);
