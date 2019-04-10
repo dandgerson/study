@@ -1,6 +1,9 @@
 const simpleStockSpan = (quotes) => {
   const spans = new Array(quotes.length);
-  for (let i = 0, k = 1, spanEnd = false; i < quotes.length; i += 1) {
+  for (let i = 0; i < quotes.length; i += 1) {
+    let k = 1;
+    let spanEnd = false;
+
     while (i - k >= 0 && !spanEnd) {
       if (quotes[i - k] <= quotes[i]) k += 1;
       else spanEnd = true;
