@@ -1,6 +1,6 @@
 const { assert } = require('chai');
 
-const Stack = require('../../../../panos-louridas-real-world-algorithms/chapter-1/exercise-1/stack');
+const Stack = require('../../../../louridas-real-world-algorithms/chapter-1/exercise-1/stack');
 
 describe('Stack', () => {
   let stack = null;

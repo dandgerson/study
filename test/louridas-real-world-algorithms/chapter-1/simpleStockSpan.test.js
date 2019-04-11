@@ -1,6 +1,6 @@
 const { assert } = require('chai');
 
-const simpleStockSpan = require('../../../panos-louridas-real-world-algorithms/chapter-1/simpleStockSpan');
+const simpleStockSpan = require('../../../louridas-real-world-algorithms/chapter-1/simpleStockSpan');
 
 describe('simpleStockSpan', () => {
   const quantity = 10;
