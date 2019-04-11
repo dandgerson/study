@@ -15,10 +15,6 @@ describe('Stack', () => {
   });
 
   describe('constructor', () => {
-    it('should exist data property', (done) => {
-      assert.exists(stack.data);
-      done();
-    });
     it('should take optional maxSize parameter and save it as a property', (done) => {
       stack = new Stack(100);
       assert.exists(stack.getMaxSize);
@@ -26,6 +22,10 @@ describe('Stack', () => {
     });
     it('shouldn\'t have maxSize parameter, when is not passed optional maxSize parameter', (done) => {
       assert.notExists(stack.maxSize);
+      done();
+    });
+    it('should throws an Error, when calls getMaxSize when is not passed optional maxSize parameter', (done) => {
+      assert.throws(stack.getMaxSize);
       done();
     });
   });
@@ -38,7 +38,7 @@ describe('Stack', () => {
       });
       it('should add new element on the top of the stack', (done) => {
         stack.push(0);
-        assert.equal(stack.data[0], 0);
+        assert.equal(stack.top(), 0);
         done();
       });
     });
@@ -49,9 +49,10 @@ describe('Stack', () => {
       });
       it('should delete element from the top of the stack', (done) => {
         const element = 1;
-        stack.data.unshift(element, 0);
+        stack.push(0);
+        stack.push(element);
         stack.pop();
-        assert.equal(stack.data[0], 0);
+        assert.equal(stack.top(), 0);
         done();
       });
       it('should throws an Error if Stack is empty', (done) => {
@@ -60,7 +61,7 @@ describe('Stack', () => {
       });
       it('should returns deleted element', (done) => {
         const element = 1;
-        stack.data.unshift(element);
+        stack.push(element);
         assert.equal(stack.pop(), element);
         done();
       });
@@ -72,7 +73,7 @@ describe('Stack', () => {
       });
       it('should returns top element from the stack', (done) => {
         const element = 1;
-        stack.data.unshift(element);
+        stack.push(element);
         assert.equal(stack.top(), 1);
         done();
       });
@@ -82,9 +83,9 @@ describe('Stack', () => {
       });
       it('shouldn\'t delete top element', (done) => {
         const element = 1;
-        stack.data.unshift(element);
+        stack.push(element);
         stack.top();
-        assert.equal(stack.data[0], 1);
+        assert.equal(stack.top(), 1);
         done();
       });
     });
@@ -94,7 +95,11 @@ describe('Stack', () => {
         done();
       });
       it('should returns quantity of the elements from the stack', (done) => {
-        stack.data.unshift(0, 1, 2, 3, 4);
+        stack.push(0);
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        stack.push(4);
         assert.equal(stack.getSize(), 5);
         done();
       });
@@ -114,7 +119,7 @@ describe('Stack', () => {
         done();
       });
       it('should returns false if stack has no elements', (done) => {
-        stack.data.unshift(0);
+        stack.push(0);
         assert.isNotTrue(stack.isEmpty());
         done();
       });
