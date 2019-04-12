@@ -140,13 +140,20 @@ describe('Stack', () => {
     });
 
     describe('constructor', () => {
-      it('should hasn\'t maxSize equals null', (done) => {
+      it('should has maxSize not equals null', (done) => {
         assert.isNotNull(stack.maxSize);
         done();
       });
-      it('should has maxSize a number > 0', (done) => {
-        assert.typeOf(stack.maxSize, 'number');
-        assert.isTrue(stack.maxSize > 0);
+      it('should throws a TypeError if the maxSize not a number', (done) => {
+        assert.throws(() => new Stack(''), TypeError);
+        done();
+      });
+      it('should throws a RangeError if the maxSize === 0', (done) => {
+        assert.throws(() => new Stack(0), RangeError);
+        done();
+      });
+      it('should throws a RangeError if the maxSize < 0', (done) => {
+        assert.throws(() => new Stack(-5), RangeError);
         done();
       });
     });

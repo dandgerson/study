@@ -7,6 +7,8 @@ const Stack = (function closure() {
       const privatMembers = { data: [] };
       priv.set(this, privatMembers);
 
+      if (maxSize !== null && typeof maxSize !== 'number') throw new TypeError('maxSize must be an integer');
+      if (maxSize !== null && !(maxSize > 0)) throw new RangeError('maxSize must be a positive integer');
       this.maxSize = maxSize;
     }
 
