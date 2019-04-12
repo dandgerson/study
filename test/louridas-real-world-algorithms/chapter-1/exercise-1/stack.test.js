@@ -16,12 +16,8 @@ describe('Stack', () => {
     });
 
     describe('constructor', () => {
-      it('shouldn\'t have maxSize parameter, when is not passed optional maxSize parameter', (done) => {
-        assert.notExists(stack.maxSize);
-        done();
-      });
-      it('should throws an Error, when calls getMaxSize when is not passed optional maxSize parameter', (done) => {
-        assert.throws(stack.getMaxSize);
+      it('should has maxSize parameter equals to null, when is not passed', (done) => {
+        assert.isNull(stack.maxSize);
         done();
       });
     });
@@ -38,6 +34,7 @@ describe('Stack', () => {
           done();
         });
       });
+
       describe('pop', () => {
         it('should exists', (done) => {
           assert.exists(stack.pop);
@@ -62,6 +59,7 @@ describe('Stack', () => {
           done();
         });
       });
+
       describe('top', () => {
         it('should exists', (done) => {
           assert.exists(stack.top);
@@ -85,6 +83,7 @@ describe('Stack', () => {
           done();
         });
       });
+
       describe('getSize', () => {
         it('should exists', (done) => {
           assert.exists(stack.getSize);
@@ -100,35 +99,37 @@ describe('Stack', () => {
           done();
         });
       });
+
       describe('isEmpty', () => {
         it('should exists', (done) => {
           assert.exists(stack.isEmpty);
           done();
         });
-        it('should returns true if stack has no elements', (done) => {
+        it('should returns true if instance has no elements', (done) => {
           assert.isTrue(stack.isEmpty());
           done();
         });
-        it('should returns false if stack has at least one element', (done) => {
+        it('should returns false if instance has at least one element', (done) => {
           stack.push(0);
-          assert.isNotTrue(stack.isEmpty());
+          assert.isFalse(stack.isEmpty());
           done();
         });
       });
+
       describe('getMaxSize', () => {
         it('should exists', (done) => {
           assert.exists(stack.getMaxSize);
           done();
         });
-        it('should throws an Error if instance initialized without maxSize paramenter', (done) => {
-          assert.throws(stack.getMaxSize);
+        it('should throws an Error', (done) => {
+          assert.throws(() => stack.getMaxSize());
           done();
         });
       });
     });
   });
 
-  describe('instance initialized with maxSize optional parameter', () => {
+  describe('instance initialized with maxSize parameter', () => {
     beforeEach(() => {
       stack = new Stack(100);
     });
@@ -139,8 +140,13 @@ describe('Stack', () => {
     });
 
     describe('constructor', () => {
-      it('should take optional maxSize parameter and save it as a property', (done) => {
-        assert.exists(stack.getMaxSize);
+      it('should hasn\'t maxSize equals null', (done) => {
+        assert.isNotNull(stack.maxSize);
+        done();
+      });
+      it('should has maxSize a number > 0', (done) => {
+        assert.typeOf(stack.maxSize, 'number');
+        assert.isTrue(stack.maxSize > 0);
         done();
       });
     });
@@ -156,18 +162,13 @@ describe('Stack', () => {
           assert.equal(stack.top(), 0);
           done();
         });
-        it('should not change the length of the data array', (done) => {
-          const dataLength = stack._getDataLength();
-          stack.push(0);
-          assert.equal(stack._getDataLength(), dataLength);
-          done();
-        });
         it('should throws an Error if overflow the stack.maxSize', (done) => {
           for (let i = 0; i < 100; i += 1) stack.push(i);
           assert.throws(() => stack.push(100));
           done();
         });
       });
+
       describe('pop', () => {
         it('should exists', (done) => {
           assert.exists(stack.pop);
@@ -191,14 +192,8 @@ describe('Stack', () => {
           assert.equal(stack.pop(), element);
           done();
         });
-        it('should not change the length of the data array', (done) => {
-          stack.push(0);
-          const dataLength = stack._getDataLength();
-          stack.pop();
-          assert.equal(stack._getDataLength(), dataLength);
-          done();
-        });
       });
+
       describe('top', () => {
         it('should exists', (done) => {
           assert.exists(stack.top);
@@ -222,6 +217,7 @@ describe('Stack', () => {
           done();
         });
       });
+
       describe('getSize', () => {
         it('should exists', (done) => {
           assert.exists(stack.getSize);
@@ -241,6 +237,7 @@ describe('Stack', () => {
           done();
         });
       });
+
       describe('isEmpty', () => {
         it('should exists', (done) => {
           assert.exists(stack.isEmpty);
@@ -250,33 +247,27 @@ describe('Stack', () => {
           assert.isTrue(stack.isEmpty());
           done();
         });
-        it('should returns true if stack instance initialized with maxSize optional parameter and has no elements', (done) => {
+        it('should returns true if instance has no elements', (done) => {
           assert.isTrue(stack.isEmpty());
           done();
         });
-        it('should returns false if stack has at least one element', (done) => {
+        it('should returns false if instance has at least one element', (done) => {
           stack.push(0);
-          assert.isNotTrue(stack.isEmpty());
-          done();
-        });
-        it('should returns false if stack instance initialized with maxSize optional parameter and has at least one element', (done) => {
-          stack = new Stack(100);
-          stack.push(0);
-          assert.isNotTrue(stack.isEmpty());
+          assert.isFalse(stack.isEmpty());
           done();
         });
       });
+
       describe('getMaxSize', () => {
         it('should exists', (done) => {
           assert.exists(stack.getMaxSize);
           done();
         });
-        it('should throws an Error if instance initialized without maxSize paramenter', (done) => {
-          assert.throws(stack.getMaxSize);
+        it('should not throws an Error', (done) => {
+          assert.doesNotThrow(() => stack.getMaxSize());
           done();
         });
-        it('should returns maxSize of the Stack if instance initialized with maxSize paramenter', (done) => {
-          stack = new Stack(100);
+        it('should returns maxSize of the instance', (done) => {
           assert.equal(stack.getMaxSize(), 100);
           done();
         });
