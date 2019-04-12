@@ -30,7 +30,7 @@ const Stack = (function closure() {
     }
 
     isEmpty() {
-      return this.getSize() === 0;
+      return _(this).data.length === 0;
     }
 
     getMaxSize() {
