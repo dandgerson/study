@@ -10,27 +10,40 @@ const Stack = (function closure() {
       maxSize && (this.maxSize = maxSize);
     }
 
-    push(i) {
-      if (this.maxSize && this.maxSize < _(this).data.length + 1) throw new Error('The Stack is full.');
-      _(this).data.push(i);
+    push(element) {
+      if (this.maxSize) {
+        if (this.maxSize < this.getSize() + 1) throw new Error('The Stack is full.');
+        _(this).data[this.getSize()] = element;
+      } else _(this).data.push(element);
     }
 
     pop() {
       if (this.isEmpty()) throw new Error('The Stack is empty.');
+      if (this.maxSize) {
+        const value = _(this).data[this.getSize() - 1];
+        _(this).data[this.getSize() - 1] = undefined;
+        return value;
+      }
       return _(this).data.pop();
     }
 
     top() {
       if (this.isEmpty()) throw new Error('The Stack is empty.');
-      return _(this).data.slice(-1)[0];
+      return this.maxSize
+        ? _(this).data[this.getSize() - 1]
+        : _(this).data.slice(-1)[0];
     }
 
     getSize() {
       return _(this).data.filter(i => i !== undefined).length;
     }
 
+    _getDataLength() {
+      return _(this).data.length;
+    }
+
     isEmpty() {
-      return _(this).data.length === 0;
+      return this.getSize() === 0;
     }
 
     getMaxSize() {
