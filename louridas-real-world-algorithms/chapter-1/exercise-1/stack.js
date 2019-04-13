@@ -9,6 +9,7 @@ const Stack = (function closure() {
 
       if (maxSize !== null && typeof maxSize !== 'number') throw new TypeError('maxSize must be an integer');
       if (maxSize !== null && !(maxSize > 0)) throw new RangeError('maxSize must be a positive integer');
+
       this.maxSize = maxSize;
     }
 
@@ -27,20 +28,20 @@ const Stack = (function closure() {
       return _(this).data.slice(-1)[0];
     }
 
-    getSize() {
-      return _(this).data.length;
-    }
-
     isEmpty() {
       return _(this).data.length === 0;
     }
 
     getMaxSize() {
-      if (this.maxSize) return this.maxSize;
-      throw new Error('The Stack is dynamic.');
+      if (!this.maxSize) throw new Error('The stack is dynamic.');
+      return this.maxSize;
     }
 
-    getAll() {
+    get size() {
+      return _(this).data.length;
+    }
+
+    get all() {
       return _(this).data.slice();
     }
   }

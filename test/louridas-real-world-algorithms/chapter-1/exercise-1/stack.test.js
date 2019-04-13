@@ -84,22 +84,6 @@ describe('Stack', () => {
         });
       });
 
-      describe('getSize', () => {
-        it('should exists', (done) => {
-          assert.exists(stack.getSize);
-          done();
-        });
-        it('should returns quantity of the elements from the stack', (done) => {
-          stack.push(0);
-          stack.push(1);
-          stack.push(2);
-          stack.push(3);
-          stack.push(4);
-          assert.equal(stack.getSize(), 5);
-          done();
-        });
-      });
-
       describe('isEmpty', () => {
         it('should exists', (done) => {
           assert.exists(stack.isEmpty);
@@ -123,6 +107,43 @@ describe('Stack', () => {
         });
         it('should throws an Error', (done) => {
           assert.throws(() => stack.getMaxSize());
+          done();
+        });
+      });
+    });
+
+    describe('getters', () => {
+      describe('size', () => {
+        it('should exists', (done) => {
+          assert.exists(stack.size);
+          done();
+        });
+        it('should returns quantity of the elements from the stack', (done) => {
+          stack.push(0);
+          stack.push(1);
+          stack.push(2);
+          stack.push(3);
+          stack.push(4);
+          assert.equal(stack.size, 5);
+          done();
+        });
+      });
+
+      describe('all', () => {
+        it('should exists', (done) => {
+          assert.exists(stack.all);
+          done();
+        });
+        it('should returns copy of data array', (done) => {
+          stack.push(0);
+          stack.push(1);
+          stack.push(2);
+          stack.push(3);
+          assert.deepEqual(stack.all, [0, 1, 2, 3]);
+          done();
+        });
+        it('should returns empty array if instance is empty', (done) => {
+          assert.deepEqual(stack.all, []);
           done();
         });
       });
@@ -225,26 +246,6 @@ describe('Stack', () => {
         });
       });
 
-      describe('getSize', () => {
-        it('should exists', (done) => {
-          assert.exists(stack.getSize);
-          done();
-        });
-        it('should returns quantity of the elements from the stack', (done) => {
-          stack.push(0);
-          stack.push(1);
-          stack.push(2);
-          stack.push(3);
-          stack.push(4);
-          assert.equal(stack.getSize(), 5);
-          done();
-        });
-        it('should returns 0 if the instance initialized with maxSize parameter', (done) => {
-          assert.equal(stack.getSize(), 0);
-          done();
-        });
-      });
-
       describe('isEmpty', () => {
         it('should exists', (done) => {
           assert.exists(stack.isEmpty);
@@ -276,6 +277,46 @@ describe('Stack', () => {
         });
         it('should returns maxSize of the instance', (done) => {
           assert.equal(stack.getMaxSize(), 100);
+          done();
+        });
+      });
+    });
+
+    describe('getters', () => {
+      describe('size', () => {
+        it('should exists', (done) => {
+          assert.exists(stack.size);
+          done();
+        });
+        it('should returns quantity of the elements from the stack', (done) => {
+          stack.push(0);
+          stack.push(1);
+          stack.push(2);
+          stack.push(3);
+          stack.push(4);
+          assert.equal(stack.size, 5);
+          done();
+        });
+        it('should returns 0 if the instance isEmpty', (done) => {
+          assert.equal(stack.size, 0);
+          done();
+        });
+      });
+      describe('all', () => {
+        it('should exists', (done) => {
+          assert.exists(stack.all);
+          done();
+        });
+        it('should returns copy of data array', (done) => {
+          stack.push(0);
+          stack.push(1);
+          stack.push(2);
+          stack.push(3);
+          assert.deepEqual(stack.all, [0, 1, 2, 3]);
+          done();
+        });
+        it('should returns empty array if instance is empty', (done) => {
+          assert.deepEqual(stack.all, []);
           done();
         });
       });
