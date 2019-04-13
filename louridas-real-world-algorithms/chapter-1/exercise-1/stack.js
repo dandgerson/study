@@ -39,6 +39,10 @@ const Stack = (function closure() {
       if (this.maxSize) return this.maxSize;
       throw new Error('The Stack is dynamic.');
     }
+
+    getAll() {
+      return _(this).data.slice();
+    }
   }
 
   return StackClass;
