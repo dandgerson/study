@@ -1,3 +1,5 @@
+const spin = require('spinatrix');
+
 const simpleStockSpan = require('../simpleStockSpan');
 const stackStockSpan = require('../stackStockSpan');
 const simpleStackStockSpan = require('../simpleStackStockSpan');
@@ -28,19 +30,7 @@ const doneWorks = Array.from(
   ]),
 );
 
-const rotate90 = (matrix) => {
-  const rotated = [];
-  for (let i = 0; i < matrix[0].length; i += 1) {
-    const row = [];
-    for (let j = 0; j < matrix.length; j += 1) {
-      row.push(matrix[j][i]);
-    }
-    rotated.push(row);
-  }
-  return rotated;
-};
-
-const result = rotate90(doneWorks)
+const result = spin.x90(doneWorks)
   .map(value => +(value.reduce((acc, current) => acc + current, 0) / entries).toFixed(3));
 
 const output = {
