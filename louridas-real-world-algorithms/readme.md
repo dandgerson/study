@@ -15,7 +15,7 @@
 1. [Реализация стека на JavaScript](./chapter-1/exercise-1/stack.js)
 1. [Бенчмарк со стеком и без](./chapter-1/exercise-2/benchmark.js)
 1. [Реализация Обратной Польской Нотации](./chapter-1/exercise-3/rpn-calc.js)
-1. Валидатор скобок
+1. [Валидатор скобок](./chapter-1/exercise-4/validateParentheses.js)
 
 ### Глава 2
 
